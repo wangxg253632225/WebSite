@@ -1,0 +1,123 @@
+<div ng-controller="adminListCtrl">
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="page-header clearfix gov_tb_padding">
+				<h1>
+					管理员管理
+					<small>
+						<i class="icon-double-angle-right"></i>
+						列表
+					</small>
+				</h1>
+				<div class="btn-group pull-right gov_right">
+					<button class="btn btn-sm btn-purple" ng-click="addAdmin();">
+						<i class="icon-plus bigger-125"></i>
+						新增
+					</button>
+				</div>
+			</div>
+
+			<div class="table-responsive">
+				<table class="table table-striped table-bordered table-hover">
+					<thead>
+						<tr>
+							<th class="center">
+								<label>
+									<input type="checkbox" class="ace" />
+									<span class="lbl"></span>
+								</label>
+							</th>
+							<th>管理员名称</th>
+							<th>创建时间</th>
+							<th>更新时间</th>
+							<th>备注</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<tr ng-repeat="user in dataList">
+							<td class="center">
+								<label>
+									<input type="checkbox" class="ace" />
+									<span class="lbl"></span>
+								</label>
+							</td>
+
+							<td>{{user.username}}</td>
+							<td>{{user.createDate}}</td>
+							<td>{{user.lastUpdateDate}}</td>
+							<td>{{user.remark}}</td>
+							<td>
+								<div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
+									<a class="blue" href="#">
+										<i class="icon-zoom-in bigger-130"></i>
+									</a>
+
+									<a class="green" ng-click="goEdit(user.id);">
+										<i class="icon-pencil bigger-130"></i>
+									</a>
+
+									<a class="red" ng-click="goDel(user.id,user.username);">
+										<i class="icon-trash bigger-130"></i>
+									</a>
+								</div>
+
+								<div class="visible-xs visible-sm hidden-md hidden-lg">
+									<div class="inline position-relative">
+										<button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown">
+											<i class="icon-caret-down icon-only bigger-120"></i>
+										</button>
+
+										<ul class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close">
+											<li>
+												<a href="#" class="tooltip-info" data-rel="tooltip" title="View">
+													<span class="blue">
+														<i class="icon-zoom-in bigger-120"></i>
+													</span>
+												</a>
+											</li>
+
+											<li>
+												<a href="#" class="tooltip-success" data-rel="tooltip" title="Edit">
+													<span class="green">
+														<i class="icon-edit bigger-120"></i>
+													</span>
+												</a>
+											</li>
+
+											<li>
+												<a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
+													<span class="red">
+														<i class="icon-trash bigger-120"></i>
+													</span>
+												</a>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+				<div class="row">
+					<div>
+						<div class="dataTables_paginate paging_bootstrap gov_lf_padd12">
+							<span style="margin-right:10px;"> 共：<font color="red">{{totalRow}}</font> 条数据</span>
+							<ul class="pagination" style="margin: 0px;">
+								<li ng-class="{true:'disabled'}[firstPage]"><a href="javascript:void(0);" ng-click="firstPage?null:load_page(1)">首页</a></li>
+								<li ng-class="{true:'disabled'}[firstPage]"><a href="javascript:void(0);" ng-click="firstPage?null:load_page(pageNum-1)"><span><i class="icon-double-angle-left"></i></span></a></li>
+								<li ng-repeat="page in pages" ng-class="{true:'active'}[pageNum==page]"><a href="javascript:void(0);" ng-click="load_page(page)">{{page}}</a></li>
+								<li  ng-class="{true:'disabled'}[lastPage]"><a href="javascript:void(0);" ng-click="lastPage?null:load_page(pageNum+1)"><span><i class="icon-double-angle-right"></i></span></a></li>
+								<li ng-class="{true:'disabled'}[lastPage]"><a href="javascript:void(0);" ng-click="lastPage?null:load_page(totalPage)">尾页</a></li>
+								<li><select style="margin-left:5px;height: 32px;" ng-model="pageSize" ng-options="x for x in pageSizes" ></select></li>
+							</ul>
+							<span style="margin-right:5px;">共：<font color="red">{{pageNum}}</font>/{{totalPage}} 条</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

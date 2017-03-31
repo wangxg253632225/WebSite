@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>万宁兴隆发展后端管理平台</title>
+		<meta name="keywords" content="万宁兴隆发展有限公司" />
+		<meta name="description" content="万宁兴隆发展有限公司" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="assets/css/font-awesome.min.css" />
+		<link rel="stylesheet" href="assets/css/ace.min.css" />
+		<link rel="stylesheet" href="assets/css/ace-rtl.min.css" />
+		<link rel="stylesheet" href="assets/css/ace-skins.min.css" />
+		
+		<link rel="stylesheet" href="css/angular-material.css" />
+		<!-- 自定义样式 -->
+		<link rel="stylesheet" href="css/main.css" />
+		
+		<script src="assets/js/ace-extra.min.js"></script>
+		<script src="assets/js/jquery-2.0.3.min.js"></script>
+		<script src="assets/js/bootstrap.min.js"></script>
+		
+		<script src="assets/js/markdown/markdown.min.js"></script>
+		<script src="assets/js/markdown/bootstrap-markdown.min.js"></script>
+		<script src="assets/js/jquery.hotkeys.min.js"></script>
+		<script src="assets/js/bootstrap-wysiwyg.min.js"></script>
+		<script src="assets/js/bootbox.min.js"></script>
+		<script src="assets/js/bootstrap-wysiwyg.min.js"></script>
+		
+		<script src="assets/js/ace-elements.min.js"></script>
+		<script src="assets/js/ace.min.js"></script>
+		
+	</head>
+	<body class="navbar-fixed breadcrumbs-fixed" ng-controller="AppCtrl">
+		<header></header>
+		<div class="main-container" id="main-container">
+			<div class="main-container-inner">
+				<a class="menu-toggler" id="menu-toggler" href="#">
+					<span class="menu-text"></span>
+				</a>
+				<!-- 引入导航 -->
+				<div class="sidebar sidebar-fixed" id="sidebar">
+					<div class="sidebar-shortcuts" id="sidebar-shortcuts">
+						<div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
+							<button class="btn btn-success">
+								<i class="icon-signal"></i>
+							</button>
+							<button class="btn btn-info">
+								<i class="icon-pencil"></i>
+							</button>
+							<button class="btn btn-warning">
+								<i class="icon-group"></i>
+							</button>
+							<button class="btn btn-danger">
+								<i class="icon-cogs"></i>
+							</button>
+						</div>
+						<div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
+							<span class="btn btn-success"></span>
+							<span class="btn btn-info"></span>
+							<span class="btn btn-warning"></span>
+							<span class="btn btn-danger"></span>
+						</div>
+					</div>
+				
+					<ul class="nav nav-list">
+						<li ng-repeat="item in items">
+							<a href="javascript:false;" ng-click="onOpenMenuOrHref(item)" class="dropdown-toggle">
+								<i class="{{item.icon}}"></i>
+								<span class="menu-text" ng-bind="item.name"></span>
+								<b class="arrow icon-angle-down"></b>
+							</a>
+					
+							<ul class="submenu">
+								<li  ng-repeat="child in item.children">
+									<a href="javascript:false;" ng-click="onOpenMenuOrHref(child)">
+										<i class="{{child.icon}}"></i>
+										{{child.name}}
+									</a>
+								</li>
+							</ul>
+						</li>
+					</ul><!-- /.nav-list -->
+					<div class="sidebar-collapse" id="sidebar-collapse">
+						<i class="icon-double-angle-left" data-icon1="icon-double-angle-left" data-icon2="icon-double-angle-right"></i>
+					</div>
+				
+					<script type="text/javascript">
+						try{ace.settings.check('sidebar' , 'collapsed')}catch(e){}
+					</script>
+				</div>
+				
+				<div class="main-content">
+					<div class="breadcrumbs breadcrumbs-fixed" id="breadcrumbs">
+						<script type="text/javascript">
+							try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+						</script>
+
+						<ul class="breadcrumb">
+							<li>
+								<i class="icon-home home-icon"></i>
+								<a href="javascript:void(0);" ng-click="getUrl('/index')">首页</a>
+							</li>
+							<li class="active">控制台</li>
+						</ul><!-- .breadcrumb -->
+
+						<div class="nav-search" id="nav-search">
+							<form class="form-search">
+								<span class="input-icon">
+									<input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+									<i class="icon-search nav-search-icon"></i>
+								</span>
+							</form>
+						</div><!-- #nav-search -->
+					</div>
+
+					<div class="page-content">
+						<div ng-view style="height: 100%;padding: 8px 0px;"></div>
+					</div>
+				</div><!-- /.main-content -->
+			</div><!-- /.main-container-inner -->
+
+			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+				<i class="icon-double-angle-up icon-only bigger-110"></i>
+			</a>
+		</div><!-- /.main-container -->
+		
+		<script data-baseurl="./" data-main="main.js" src="libs/require.js" id="main"></script>
+	</body>
+</html>
